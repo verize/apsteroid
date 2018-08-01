@@ -1,31 +1,51 @@
 {
-  "name": "techlookup-app",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "test:unit": "vue-cli-service test:unit"
-  },
-  "dependencies": {
-    "vue": "^2.5.16",
-    "vue-router": "^3.0.1",
-    "vuex": "^3.0.1"
-  },
-  "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.0.0-rc.10",
-    "@vue/cli-plugin-eslint": "^3.0.0-rc.10",
-    "@vue/cli-plugin-unit-mocha": "^3.0.0-rc.10",
-    "@vue/cli-service": "^3.0.0-rc.10",
-    "@vue/eslint-config-prettier": "^3.0.0-rc.10",
-    "@vue/test-utils": "^1.0.0-beta.20",
-    "chai": "^4.1.2",
-    "vue-template-compiler": "^2.5.16"
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ]
+	"name": "apsteroid",
+	"version": "1.0.0-beta",
+	"author": {
+		"name": "Gonzalo Plaza",
+		"email": "gonzalo@verize.com"
+	},
+	"license": "MIT",
+	"private": true,
+	"scripts": {
+		"serve": "vue-cli-service serve",
+		"build": "vue-cli-service build",
+		"lint": "vue-cli-service lint",
+		"dev": "NODE_ENV=development nodemon server/index"
+	},
+	"dependencies": {
+		"axios": "^0.18.0",
+		"body-parser": "^1.18.3",
+		"bootstrap-vue": "^2.0.0-rc.11",
+		"cookie-parser": "^1.4.3",
+		"debug": "^3.1.0",
+		"express": "^4.16.3",
+		"express-session": "^1.15.6",
+		"helmet": "^3.13.0",
+		"method-override": "^3.0.0",
+		"moment": "^2.22.2",
+		"vue": "^2.5.16",
+		"vue-router": "^3.0.1",
+		"vuejs-datepicker": "^1.5.2",
+		"vuex": "^3.0.1"
+	},
+	"devDependencies": {
+		"@vue/cli-plugin-babel": "^3.0.0-rc.10",
+		"@vue/cli-plugin-eslint": "^3.0.0-rc.10",
+		"@vue/cli-plugin-unit-mocha": "^3.0.0-rc.10",
+		"@vue/cli-service": "^3.0.0-rc.10",
+		"@vue/eslint-config-prettier": "^3.0.0-rc.10",
+		"@vue/test-utils": "^1.0.0-beta.20",
+		"chai": "^4.1.2",
+		"eslint": "^5.2.0",
+		"eslint-loader": "^2.1.0",
+		"eslint-plugin-vue": "^4.7.1",
+		"nodemon": "^1.18.3",
+		"vue-template-compiler": "^2.5.16"
+	},
+	"browserslist": [
+		"> 1%",
+		"last 2 versions",
+		"not ie <= 8"
+	]
 }
