@@ -41,11 +41,7 @@ export default {
   mounted() {
     this.fromDate = new Date();
   },
-  computed: {
-    apiKey() {
-      return this.$store.state.api_key;
-    }
-  },
+  computed: {},
   methods: {
     getResults() {
       this.$store.dispatch("setFromDate", this.fromDate).then(() => {
@@ -59,7 +55,6 @@ export default {
             }
           })
           .then(response => {
-            console.log(response.data);
             this.$store.dispatch(
               "setResults",
               response.data.near_earth_objects

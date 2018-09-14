@@ -8,7 +8,7 @@
              :header="'Close approach at ' + asteroid.close_approach_data[0].close_approach_date"
              :sub-title="isDangerous(asteroid.is_potentially_hazardous_asteroid)">
           <p class="card-text">
-              <pre>{{ asteroid | pretty }}</pre>
+              <pre>{{ asteroid }}</pre>
           </p>
           <a :href="asteroid.nasa_jpl_url" target="_blank" class="btn btn-sm btn-info">Details</a>
     </b-card> 

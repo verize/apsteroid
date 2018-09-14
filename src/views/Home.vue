@@ -18,9 +18,9 @@
     </div>
     <div class="footer">
     <ul>
-      <li><a href="https://vuejs.org" target="_blank">VueJS Docs</a></li>
-      <li><a href="https://api.nasa.gov/api.html" target="_blank">NASA Open APIs</a></li>
-      <li><a href="https://circleci.com" target="_blank">CircleCI</a></li>
+      <li><a title="Vuejs Docs" href="https://vuejs.org" target="_blank">VueJS Docs</a></li>
+      <li><a title="NASA Open APIs" href="https://api.nasa.gov/api.html" target="_blank">NASA Open APIs</a></li>
+      <li><a title="CircleCI" href="https://circleci.com" target="_blank">CircleCI</a></li>
     </ul>
     </div>
 </div>

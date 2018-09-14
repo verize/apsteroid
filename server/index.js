@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 
 "use strict";
+//Load Env vars
+require('dotenv').config();
 
 var app = require('./app');
-var config = require('../config/config');
 var http = require('http');
 var debug = require('debug');
 
@@ -37,9 +38,9 @@ function onError(error) {
         throw error;
     }
 
-    var bind = typeof port === 'string'
-        ? 'Pipe ' + port
-        : 'Port ' + port;
+    var bind = typeof port === 'string' ?
+        'Pipe ' + port :
+        'Port ' + port;
 
     switch (error.code) {
         case 'EACCES':
@@ -57,11 +58,11 @@ function onError(error) {
 
 function onListening() {
     var addr = server.address();
-    var bind = typeof addr === 'string'
-        ? 'pipe ' + addr
-        : 'port ' + addr.port;
+    var bind = typeof addr === 'string' ?
+        'pipe ' + addr :
+        'port ' + addr.port;
     debug('Listening on ' + bind);
-    console.log('---- ' + config.name + ' version ' + config.version + ' ----');
+    console.log('---- ' + process.env.VUE_APP_NAME + ' version ' + process.env.VUE_APP_VERSION + ' ----');
     console.log('Server INITIALIZED listening on port: ' + port);
     console.log('NODE_ENV Environment: ' + process.env.NODE_ENV);
 }
