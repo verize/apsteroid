@@ -55,13 +55,21 @@ export default {
             }
           })
           .then(response => {
-            this.$store.dispatch(
-              "setResults",
-              response.data.near_earth_objects
-            );
+            let results = response.data.near_earth_objects;
+            let counter = 0;
+            if (results) {
+              counter =
+                results[moment(this.fromDate).format("YYYY-MM-DD")].length;
+            }
+
+            this.$store.dispatch("setCounter", counter);
+            this.$store.dispatch("setResults", results);
           })
           .catch(e => {
             console.log(e);
+            this.$store.dispatch("setResults", null);
+            this.$store.dispatch("setCounter", 0);
+            this.$store.dispatch("setRequestError", true);
           });
       });
     }

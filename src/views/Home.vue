@@ -10,10 +10,17 @@
         <img src="../assets/nasa_logo.png" width="100" fluid alt="NASA Logo" />
       </a> 
     </b-jumbotron>
+    <div class="container" v-if="hasError" >
+      <div class="alert alert-danger" role="alert">
+         <strong>Ops! An error ocurred getting data from NASA servers... please try again or wait a moment!</strong>
+      </div>
+    </div>
+
     <div class="container" v-if="hasResults" >
       <div class="alert alert-primary" role="alert">
-         <strong>Wow! NASA has found some asteroids approaching to Earth</strong>
+         <strong>Wow! NASA has found {{hasResults}} asteroids approaching to Earth</strong>
       </div>
+      
       <ResultBox />
     </div>
     <div class="footer">
@@ -36,6 +43,9 @@ export default {
   computed: {
     hasResults() {
       return this.$store.getters.counter;
+    },
+    hasError() {
+      return this.$store.getters.requestError;
     }
   },
   components: {

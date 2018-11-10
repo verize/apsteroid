@@ -10,7 +10,8 @@
           <p class="card-text">
               <pre>{{ asteroid }}</pre>
           </p>
-          <a :href="asteroid.nasa_jpl_url" target="_blank" class="btn btn-sm btn-info">Details</a>
+          <a :href="asteroid.nasa_jpl_url" target="_blank" class="btn btn-sm btn-default">Details</a>
+          <a :href="asteroid.nasa_jpl_url + ';old=0;orb=1;cov=0;log=0;cad=0#orb'" target="_blank" class="btn btn-sm btn-info">View Orbit Graph</a>
     </b-card> 
   </div>
 </div>

@@ -8,6 +8,8 @@ export default new Vuex.Store({
   state: {
     fromDate: new Date(),
     toDate: new Date(),
+    counter: 0,
+    requestError: false,
     results: {}
   },
   getters: {
@@ -15,10 +17,13 @@ export default new Vuex.Store({
       return state.results
     },
     counter: state => {
-      return Object.keys(state.results).length
+      return state.counter;
     },
     fromDate: state => {
-      return moment(state.fromDate).format("YYYY-MM-DD");
+      return moment(state.fromDate).format("YYYY-MM-DD")
+    },
+    requestError: state => {
+      return state.requestError;
     }
   },
   mutations: {
@@ -27,6 +32,12 @@ export default new Vuex.Store({
     },
     setResults(state, results) {
       state.results = results
+    },
+    setCounter(state, counter) {
+      state.counter = counter
+    },
+    setRequestError(state, requestError) {
+      state.requestError = requestError
     }
   },
   actions: {
@@ -35,6 +46,12 @@ export default new Vuex.Store({
     },
     setResults(context, results) {
       context.commit('setResults', results)
+    },
+    setCounter(context, counter) {
+      context.commit('setCounter', counter)
+    },
+    setRequestError(context, requestError) {
+      context.commit('setRequestError', requestError)
     }
   }
 });

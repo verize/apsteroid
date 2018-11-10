@@ -2,7 +2,7 @@
 
 **author**: Gonzalo Plaza <gonzalo@verize.com>
 
-**version**: 1.0.0-beta
+**version**: 1.0.1-beta
 
 Apsteroid! A simple service to retrieve a list of Asteroids based on their closest approach date to Earth...
 
@@ -23,7 +23,7 @@ You should create an .env file inside your project root directory:
 
 ```
 VUE_APP_NAME=Apsteroid!
-VUE_APP_VERSION=1.0.0-beta
+VUE_APP_VERSION=1.0.1-beta
 VUE_APP_NASA_API_ENDPOINT=https://api.nasa.gov/neo/rest/v1/feed
 VUE_APP_NASA_API_KEY=DEMO_KEY
 ```
