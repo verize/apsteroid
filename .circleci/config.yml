@@ -66,7 +66,7 @@ jobs:
       - run:
           name: Test API
           command: curl -ki http://localhost:3000/status
-      - run: pm2 stop server
+      - run: pm2 stop index
   deploy:
     <<: *defaults
     steps:
