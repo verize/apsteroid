@@ -1,0 +1,5 @@
+/node_modules/*
+/nginx/*
+/logs/*.log
+.git
+.circleci

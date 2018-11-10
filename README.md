@@ -2,11 +2,17 @@
 
 **author**: Gonzalo Plaza <gonzalo@verize.com>
 
-**version**: 1.0.1-beta
+**version**: 1.1.0-beta
 
 Apsteroid! A simple service to retrieve a list of Asteroids based on their closest approach date to Earth...
 
 We use Vuejs, Nodejs and NASA APIs to obtain data filtered by dates.
+
+![Aspteroid Screenshot](/src/assets/screen1.png)
+
+![Aspteroid Screenshot](/src/assets/screen2.png)
+
+![Aspteroid Screenshot](/src/assets/screen3.png)
 
 ### Installation:
 
@@ -41,6 +47,16 @@ Or compiling assets and running application through custom Node server:
 ```
 $ yarn build
 $ yarn dev
+```
+
+### Docker
+
+You can run it building a Docker image
+
+```
+yarn build
+docker build --build-arg NODE_ENV=production -t apsteroid .
+docker run -d -p 3000:3000 --name apsteroid apsteroid
 ```
 
 ### References:
