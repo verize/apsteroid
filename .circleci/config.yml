@@ -61,7 +61,7 @@ jobs:
       - run:
           name: Run server
           command: |
-            pm2 start /tmp/workspace/apsteroid/app/server.js
+            pm2 start /tmp/workspace/apsteroid/server/index.js
       - run: sleep 10 #Wait for node server initialization
       - run:
           name: Test API
