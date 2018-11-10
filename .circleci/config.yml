@@ -1,0 +1,105 @@
+defaults: &defaults
+  working_directory: /home/circleci/apsteroid
+  docker:
+    - image: circleci/node:10.4.0-browsers
+      environment:
+        - NODE_CONFIG_STRICT_MODE: 1
+        - NODE_ENV: production
+        - DOCKER_IMAGE_NAME: apsteroid
+        - VUE_APP_NAME: Apsteroid!
+        - VUE_APP_VERSION: 1.2.0-beta
+        - VUE_APP_NASA_API_ENDPOINT: https://api.nasa.gov/neo/rest/v1/feed
+        - VUE_APP_NASA_API_KEY: DEMO_KEY
+
+workspace_root: &workspace_root /tmp/workspace
+
+attach_workspace: &attach_workspace
+  attach_workspace:
+    at: *workspace_root
+
+version: 2
+jobs:
+  build:
+    <<: *defaults
+    steps:
+      - checkout
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+      - run:
+          name: Install Nodejs Dependencies
+          command: yarn install --production=false
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - run:
+          name: Compile Node bundles
+          command: yarn build
+      - run: sleep 10 #Wait for build
+      - run:
+          name: Move artifact to workspace
+          command: |
+            mkdir -p /tmp/workspace/apsteroid
+            cp -r /home/circleci/apsteroid /tmp/workspace/
+      - persist_to_workspace:
+          # Must be an absolute path, or relative path from working_directory.
+          root: *workspace_root
+          # Must be relative path from root
+          paths:
+            - apsteroid
+  test:
+    <<: *defaults
+    steps:
+      - *attach_workspace
+      - run:
+          name: Install PM2
+          command: sudo yarn global add pm2
+      - run:
+          name: Run server
+          command: |
+            pm2 start /tmp/workspace/apsteroid/app/server.js
+      - run: sleep 10 #Wait for node server initialization
+      - run:
+          name: Test API
+          command: curl -ki http://localhost:3000/status
+      - run: pm2 stop server
+  deploy:
+    <<: *defaults
+    steps:
+      - *attach_workspace
+      - setup_remote_docker
+      - run:
+          name: Install AWS-CLI
+          command: |
+            sudo apt-get -y -qq update
+            sudo apt-get -y -qq install python-pip python-dev jq
+            sudo pip install awscli --upgrade 
+            sleep 3
+      - run:
+          name: "Login to AWS ECR"
+          command: |
+            eval "$(aws ecr get-login --no-include-email --region $AWS_REGION)"
+      - run:
+          name: "Build and tag Docker Image"
+          command: |
+            docker build --build-arg NODE_ENV=production -t $DOCKER_IMAGE_NAME /tmp/workspace/apsteroid
+            docker tag $DOCKER_IMAGE_NAME:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$DOCKER_IMAGE_NAME:latest
+      - run:
+          name: "Push image to AWS ECR"
+          #docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$DOCKER_IMAGE_NAME:$CIRCLE_SHA1
+          command: docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$DOCKER_IMAGE_NAME:latest
+workflows:
+  version: 2
+  build-deploy-toecr:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
+      - deploy:
+          requires:
+            - test
