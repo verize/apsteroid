@@ -2,17 +2,17 @@
 
 **author**: Gonzalo Plaza <gonzalo@verize.com>
 
-**version**: 1.2.0-beta
+**version**: 1.3.0-beta
 
 Apsteroid! A simple service to retrieve a list of Asteroids based on their closest approach date to Earth...
 
 We use Vuejs, Nodejs and NASA APIs to obtain data filtered by dates.
 
-![Aspteroid Screenshot](/src/assets/screen1.png)
+![Aspteroid Screenshot](src/assets/screen1.png)
 
-![Aspteroid Screenshot](/src/assets/screen2.png)
+![Aspteroid Screenshot](src/assets/screen2.png)
 
-![Aspteroid Screenshot](/src/assets/screen3.png)
+![Aspteroid Screenshot](src/assets/screen3.png)
 
 ### Installation:
 
@@ -29,7 +29,7 @@ You should create an .env file inside your project root directory:
 
 ```
 VUE_APP_NAME=Apsteroid!
-VUE_APP_VERSION=1.2.0-beta
+VUE_APP_VERSION=1.3.0-beta
 VUE_APP_NASA_API_ENDPOINT=https://api.nasa.gov/neo/rest/v1/feed
 VUE_APP_NASA_API_KEY=DEMO_KEY
 ```

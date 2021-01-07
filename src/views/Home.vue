@@ -1,36 +1,56 @@
 <template>
-<div>
+  <div>
     <b-jumbotron
-       class="accent" 
-       :header="this.$config.name"
-       header-level="3"
-       :lead="this.$config.description" > 
+      class="accent"
+      :header="this.$config.name"
+      header-level="3"
+      :lead="this.$config.description"
+    >
       <RequestForm />
       <a href="https://nasa.gov">
         <img src="../assets/nasa_logo.png" width="100" fluid alt="NASA Logo" />
-      </a> 
+      </a>
     </b-jumbotron>
-    <div class="container" v-if="hasError" >
+    <div class="container" v-if="hasError">
       <div class="alert alert-danger" role="alert">
-         <strong>Ops! An error ocurred getting data from NASA servers... please try again or wait a moment!</strong>
+        <strong
+          >Ops! An error ocurred getting data from NASA servers... please try
+          again or wait a moment!</strong
+        >
       </div>
     </div>
 
-    <div class="container" v-if="hasResults" >
+    <div class="container" v-if="hasResults">
       <div class="alert alert-primary" role="alert">
-         <strong>Wow! NASA has found {{hasResults}} asteroids approaching to Earth</strong>
+        <strong
+          >Wow! NASA has found {{ hasResults }} asteroids approaching to
+          Earth</strong
+        >
       </div>
-      
+
       <ResultBox />
     </div>
     <div class="footer">
-    <ul>
-      <li><a title="Vuejs Docs" href="https://vuejs.org" target="_blank">VueJS Docs</a></li>
-      <li><a title="NASA Open APIs" href="https://api.nasa.gov/api.html" target="_blank">NASA Open APIs</a></li>
-      <li><a title="Verize" href="https://verize.com" target="_blank">Verize</a></li>
-    </ul>
+      <ul>
+        <li>
+          <a title="Vuejs Docs" href="https://vuejs.org" target="_blank"
+            >VueJS Docs</a
+          >
+        </li>
+        <li>
+          <a
+            title="NASA Open APIs"
+            href="https://api.nasa.gov/#browseAPI"
+            target="_blank"
+            >NASA Open APIs</a
+          >
+        </li>
+        <li>
+          <a title="Verize" href="https://verize.com" target="_blank">Verize</a>
+        </li>
+      </ul>
     </div>
-</div>
+  </div>
 </template>
 
 <script>
@@ -46,12 +66,12 @@ export default {
     },
     hasError() {
       return this.$store.getters.requestError;
-    }
+    },
   },
   components: {
     RequestForm,
-    ResultBox
-  }
+    ResultBox,
+  },
 };
 </script>
 
