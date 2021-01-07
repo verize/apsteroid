@@ -15,7 +15,7 @@
 		"prod": "NODE_ENV=production node server/index"
 	},
 	"dependencies": {
-		"axios": "^0.18.0",
+		"axios": "^0.21.1",
 		"body-parser": "^1.18.3",
 		"bootstrap-vue": "^2.0.0-rc.11",
 		"cookie-parser": "^1.4.3",
